@@ -8,7 +8,7 @@ export function Hero() {
       <p className="eyebrow">ALMATY · SURPLUS FOOD MARKETPLACE</p>
       <h1 id="hero-title">Good food,<br /><em>another chance.</em></h1>
       <p className="hero-lead">Discover surprise bags from local cafes, bakeries, and food spots. Save on something delicious while giving good food a second chance.</p>
-      <div className="hero-actions"><Link className="button button-primary button-large" to="/#catalog">Explore surprise bags <ArrowUpRight size={18} /></Link><Link className="text-link" to="/#how-it-works">How it works <ArrowDownRight size={18} /></Link></div>
+      <div className="hero-actions"><Link className="button button-primary button-large" to="/bags">Explore surprise bags <ArrowUpRight size={18} /></Link><Link className="text-link" to="/#how-it-works">How it works <ArrowDownRight size={18} /></Link></div>
     </div>
     <div className="hero-visual">
       <img src={imageSrc(`${import.meta.env.BASE_URL}images/fan-food/ichiraku-ramen.webp`)} width="1000" height="750" alt="Steaming ramen with pork, egg, and noodles" fetchPriority="high" />

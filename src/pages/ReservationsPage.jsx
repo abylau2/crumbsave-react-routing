@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getReservations } from '../api/bagsApi.js';
+import { getReservations } from '../services/service.js';
 import { EmptyState, ErrorState } from '../components/States.jsx';
 import { ReservationCard } from '../components/ReservationCard.jsx';
 

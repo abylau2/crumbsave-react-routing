@@ -10,6 +10,6 @@ export function ErrorState({ message, onRetry }) {
 }
 
 export function EmptyState({ kind = 'catalog', onClear }) {
-  if (kind === 'reservations') return <div className="state-panel state-panel-soft"><span className="state-symbol">0</span><h2>Nothing in your bag yet.</h2><p>Your next good find is waiting.</p><Link className="button button-primary" to="/#catalog">Explore surprise bags <ArrowUpRight size={17} /></Link></div>;
+  if (kind === 'reservations') return <div className="state-panel state-panel-soft"><span className="state-symbol">0</span><h2>Nothing in your bag yet.</h2><p>Your next good find is waiting.</p><Link className="button button-primary" to="/bags">Explore surprise bags <ArrowUpRight size={17} /></Link></div>;
   return <div className="state-panel state-panel-soft"><span className="state-symbol">0</span><h3>No bags found.</h3><p>Try another search or clear your filters to see more good finds.</p><button className="button button-primary" type="button" onClick={onClear}>Clear filters</button></div>;
 }

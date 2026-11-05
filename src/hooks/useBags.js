@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getBags } from '../api/bagsApi.js';
+import { getBags } from '../services/service.js';
 
 export function useBags() {
   const [request, setRequest] = useState({ status: 'loading', bags: [], error: '' });

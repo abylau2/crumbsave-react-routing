@@ -15,7 +15,7 @@ with sync_playwright() as playwright:
     bad_responses = []
     page.on('pageerror', lambda error: errors.append(str(error)))
     page.on('response', lambda response: bad_responses.append(f'{response.status} {response.url}') if response.status >= 400 else None)
-    page.goto(BASE, wait_until='networkidle')
+    page.goto(BASE + '/bags', wait_until='networkidle')
     expect(page.locator('.bag-card')).to_have_count(12)
     expect(page.locator('.result-count')).to_contain_text('120 bags found')
     first_page_ids = page.locator('.bag-card h3').all_text_contents()
@@ -26,17 +26,16 @@ with sync_playwright() as playwright:
     ]
     assert len(set(page.locator('.bag-card img').evaluate_all('(images) => images.map((image) => image.getAttribute("src"))'))) == 12
     print('PASS initial 120 records, 12 cards')
-    page.get_by_role('link', name='Explore surprise bags').first.click()
-    page.wait_for_timeout(250)
-    assert page.evaluate('scrollY') > 500
     page.get_by_role('link', name='How it works').first.click()
-    page.wait_for_timeout(250)
+    page.wait_for_timeout(350)
     assert abs(page.locator('#how-it-works').bounding_box()['y']) < 80
-    print('PASS section navigation scrolls to its target')
+    page.get_by_role('link', name='Explore surprise bags').first.click()
+    expect(page.locator('.bag-card')).to_have_count(12)
+    print('PASS landing anchor and catalog navigation')
 
     page.get_by_role('button', name='Bakery', exact=True).click()
     expect(page.locator('.result-count')).to_contain_text('20 bags found')
-    assert page.locator('.bag-card .category-label').all_text_contents() == ['Bakery'] * 12
+    expect(page.locator('.bag-card .category-label')).to_have_text(['Bakery'] * 12)
     page.get_by_role('searchbox').fill('Homer')
     expect(page.locator('.result-count')).to_contain_text('bags found')
     assert page.locator('.bag-card').count() > 0
@@ -89,7 +88,7 @@ with sync_playwright() as playwright:
     expect(page.get_by_role('heading', level=1)).to_contain_text('A Lovely Bakery Surprise')
     page.reload(wait_until='networkidle')
     expect(page.get_by_role('heading', level=1)).to_contain_text('A Lovely Bakery Surprise')
-    page.goto(BASE)
+    page.goto(BASE + '/bags')
     expect(page.locator('.result-count')).to_contain_text('121 bags found')
     print('PASS controlled form, validation, creation, persistence')
 

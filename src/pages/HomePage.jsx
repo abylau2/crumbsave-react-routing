@@ -4,19 +4,14 @@ import { Link } from 'react-router-dom';
 import { Hero } from '../components/Hero.jsx';
 import { HowItWorks } from '../components/HowItWorks.jsx';
 import { BagCard } from '../components/BagCard.jsx';
-import { CatalogControls, defaultFilters } from '../components/CatalogControls.jsx';
-import { Pagination } from '../components/Pagination.jsx';
+import { defaultFilters } from '../components/CatalogControls.jsx';
 import { EmptyState, ErrorState, LoadingSkeleton } from '../components/States.jsx';
 import { useBags } from '../hooks/useBags.js';
-import { filterAndSortBags, paginate } from '../utils/catalog.js';
+import { filterAndSortBags } from '../utils/catalog.js';
 
-export function HomePage({ filters, setFilters }) {
+export function HomePage() {
   const { bags, status, error, retry } = useBags();
-  const results = useMemo(() => filterAndSortBags(bags, filters), [bags, filters]);
-  const pageData = useMemo(() => paginate(results, filters.page), [results, filters.page]);
-  const change = (field, value) => setFilters((current) => ({ ...current, [field]: value, page: 1 }));
-  const clear = () => setFilters(defaultFilters);
-  const changePage = (page) => setFilters((current) => ({ ...current, page }));
+  const featured = useMemo(() => filterAndSortBags(bags, defaultFilters).slice(0, 6), [bags]);
   return <>
     <Hero />
     <section className="catalog-section container" id="catalog" aria-labelledby="catalog-title">
@@ -24,8 +19,8 @@ export function HomePage({ filters, setFilters }) {
       {status === 'loading' && <LoadingSkeleton />}
       {status === 'error' && <ErrorState message={error} onRetry={retry} />}
       {status === 'success' && <>
-        <CatalogControls filters={filters} onChange={change} onClear={clear} resultCount={results.length} />
-        {results.length === 0 ? <EmptyState onClear={clear} /> : <><div className="bag-grid">{pageData.items.map((bag, index) => <BagCard key={bag.id} bag={bag} priority={index < 3} />)}</div><Pagination page={pageData.currentPage} pageCount={pageData.pageCount} onPage={changePage} /></>}
+        {!featured.length ? <EmptyState onClear={retry} /> : <div className="bag-grid">{featured.map((bag, index) => <BagCard key={bag.id} bag={bag} priority={index < 3} navigationState={{ fromApp: true }} />)}</div>}
+        <Link className="button button-secondary featured-link" to="/bags">Explore all bags <ArrowUpRight size={18} /></Link>
       </>}
     </section>
     <HowItWorks />

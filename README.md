@@ -3,7 +3,7 @@
 **Public demo:** https://abylau2.github.io/crumbsave-react-midterm/  
 **Source repository:** https://github.com/abylau2/crumbsave-react-midterm
 
-**Good food, another chance.** CrumbSave is an independently built React midterm project: a fictional surplus-food Surprise Bag marketplace for Almaty. Visitors can browse demo offers, create a demo listing, and save a demo reservation. No real shops, payments, or pickup bookings are involved.
+**Good food, another chance.** CrumbSave is an independently built React university project: a fictional surplus-food Surprise Bag marketplace for Almaty. Visitors can browse demo offers, create a demo listing, and save a demo reservation. No real shops, payments, or pickup bookings are involved.
 
 ## Features
 
@@ -41,7 +41,11 @@ npm run preview
 
 | Route | Purpose |
 |---|---|
-| `/` | Editorial home and catalog |
+| `/` | Editorial home with six API-loaded featured bags |
+| `/about` | Project concept and demo limitations |
+| `/bags` | Full catalog with URL filters and pagination |
+| `/dashboard` | API-based KPIs, breakdowns and interactive filters |
+| `/login` | Styled authentication placeholder |
 | `/bags/:id` | Bag details and demo reservation |
 | `/add` | Controlled listing form |
 | `/reservations` | Saved demo reservations |
@@ -51,7 +55,9 @@ npm run preview
 
 ```text
 src/
-  api/bagsApi.js          asynchronous data and persistence boundary
+  services/service.js     asynchronous data and persistence boundary
+  api/bagsApi.js          compatibility re-export
+  layouts/RootLayout.jsx  shared Header, Outlet, Suspense and Footer
   data/fanConcepts.js     52 named food concepts and hand-written variants
   data/seedBags.js        deterministic 120-record demo catalog
   components/             reusable navigation, catalog, cards and states
@@ -66,7 +72,7 @@ tests/                    focused unit and browser smoke tests
 
 ## Simulated API and persistence
 
-All business data access goes through `src/api/bagsApi.js`: `getBags`, `getBagById`, `createBag`, `reserveBag`, and `getReservations`. Calls take about 450 ms and accept an optional `AbortSignal`. Returned values are copies so components cannot accidentally mutate storage. `reserveBag` reads the current state at commit time and writes the reduced quantity and reservation together. `createBag` validates fields again at the API boundary and uses a UUID for the new listing.
+All business data access goes through `src/services/service.js`: `getBags`, `getBagById`, `createBag`, `reserveBag`, and `getReservations`. Calls take about 450 ms and accept an optional `AbortSignal`. Returned values are copies so components cannot accidentally mutate storage. `reserveBag` reads the current state at commit time and writes the reduced quantity and reservation together. `createBag` validates fields again at the API boundary and uses a UUID for the new listing.
 
 The first API read seeds `localStorage` with 120 meaningful records. The existing storage key is versioned internally. On migration from the original generic catalog, old `seed-` listings are replaced with new `fan-` listings while user-created `bag-` records and reservation snapshots remain. A later migration updates seeded variation image paths while preserving saved quantities and reservations. Reservations for retired seed listings are marked as archived, with their original details still visible. A stored empty array remains empty. Created bags, reduced quantities, and reservations survive refresh in the same browser. Browser storage can be cleared by the user, so this is a demo rather than a shared account system. To reset intentionally during development, run `localStorage.removeItem('crumbsave:demo:v1'); location.reload()` in DevTools. The API also exports `resetDemoData()` for tests.
 
@@ -74,7 +80,15 @@ To exercise the transient catalog error and retry state, open DevTools on the lo
 
 ## React architecture
 
-`App.jsx` owns only the catalog preference object so filters and page selection survive a trip to a detail route. `HomePage` derives filtered, sorted, paginated records from the API result. `useBags` owns catalog request state and cancels its effect when it is replaced or unmounted. Detail and reservation pages load asynchronously with effect cleanup. `AddBagPage` owns controlled input values, field errors, and submission status. See [DEFENSE_GUIDE.md](DEFENSE_GUIDE.md) for live-defense explanations.
+`App.jsx` defines nested routes under `RootLayout`. The layout uses `Outlet` to show the current page between shared navigation and footer. Bags, About, Dashboard and Login use `React.lazy`; the layout provides a `Suspense` loading message.
+
+`BagsPage` reads filters from `useSearchParams`. Search, category, district, price, availability, sorting and page are stored in the URL. Invalid values use defaults; out-of-range pages are clamped. Text changes use replace navigation. Other filter and page changes support Back/Forward. Detail cards pass catalog context so All Bags and Back restore the URL. `BagDetailsPage` reads its ID using `useParams` and fetches that record through the service.
+
+`useBags` owns loading, error and success state and aborts old requests. Pages derive visible data from the API response. Dashboard computes six statistics and category/district counts in `utils/dashboard.js`; category and district filters recalculate both KPIs and bars. Empty datasets avoid division by zero. No numbers represent real revenue.
+
+Login validates its inputs but only explains that authentication is unavailable. It does not save or send passwords.
+
+See [ROUTING_HOMEWORK_GUIDE.md](ROUTING_HOMEWORK_GUIDE.md) for simple explanations and [TEST_REPORT.md](TEST_REPORT.md) for actual verification commands.
 
 ## Deployment
 
@@ -89,3 +103,17 @@ The catalog has 52 concept images and 68 separate close-up crops for variations,
 ## Limits
 
 This is one browser's student demo. Listings are fictional and cannot be booked in real life. There is no login, shared backend, payment, food-safety guarantee, QR pickup ticket, or physical collection verification. `localStorage` persistence is limited to the current browser profile and origin.
+
+## Routing acceptance tests
+
+```bash
+npm test
+npm run build
+npm run build:pages
+npm run preview -- --port 4173
+# In another terminal, using Python with Playwright installed:
+python3 tests/browser_smoke.py
+python3 tests/routing_browser.py
+```
+
+The routing test also starts a temporary server on port 4175. It serves the Pages build with actual 404 responses to test deep-link restoration. Browser tests use fresh browser contexts and do not reset your normal browser data.

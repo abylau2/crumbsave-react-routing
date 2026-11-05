@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, RotateCcw } from 'lucide-react';
-import { createBag } from '../api/bagsApi.js';
+import { createBag } from '../services/service.js';
 import { CATEGORIES, DISTRICTS } from '../data/seedBags.js';
 import { emptyForm, normalizeBag, validateBag } from '../utils/validation.js';
 
