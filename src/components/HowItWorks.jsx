@@ -1,7 +1,7 @@
 const steps = [
-  ['01', 'Discover', 'Explore available surprise bags from local food spots.'],
-  ['02', 'Reserve', 'Choose a bag and save it to your reservations.'],
-  ['03', 'Pick up', 'Visit the listed pickup area during the collection window.']
+  ['1', 'Discover', 'Explore available surprise bags from local food spots.'],
+  ['2', 'Reserve', 'Choose a bag and save it to your reservations.'],
+  ['3', 'Pick up', 'Visit the listed pickup area during the collection window.']
 ];
 export function HowItWorks() {
   return <section className="how-section" id="how-it-works" aria-labelledby="how-title"><div className="container how-layout">
