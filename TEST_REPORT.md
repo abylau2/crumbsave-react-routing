@@ -43,3 +43,15 @@ Login intentionally has no real authentication. API data remains local to one br
 ## Design review
 
 The existing forest/ivory palette, DM Sans, Newsreader, spacing and image library were retained. Dashboard uses simple count bars rather than a chart library. Manual rubric review: AI Slop 1/10; Distinctiveness 8/10. These are design judgments, not automated accessibility certification.
+
+## Public deployment
+
+Verified on GitHub Pages after build `f7fd83c` completed successfully. Source implementation: `c42144d`.
+
+Public browser checks passed for Home, About, `/bags?category=Bakery&sort=price-asc&page=2`, `/bags/fan-001`, Dashboard, Login, and the Home How It Works hash. Each address was opened directly and refreshed. The catalog retained its Bakery filter and eight page-2 records. Dashboard displayed six KPIs. No JavaScript page errors were observed.
+
+Repository: https://github.com/abylau2/crumbsave-react-midterm
+
+Application: https://abylau2.github.io/crumbsave-react-midterm/
+
+Implementation branch: `feat/routing-homework`. It was pushed and fast-forwarded to remote main without force. The production build was committed normally to gh-pages. No user data or image files were removed.
