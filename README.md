@@ -66,7 +66,7 @@ src/
   utils/                  catalog and validation functions
   styles/                 tokens, global rules, layout, components, responsive
 public/images/fan-food/   52 source images and 68 variation crops
-public/fonts/             locally stored DM Sans and Newsreader fonts and OFL licenses
+public/fonts/             locally stored Instrument Sans and Fraunces fonts and OFL licenses
 tests/                    focused unit and browser smoke tests
 ```
 
@@ -98,7 +98,7 @@ The public demo is deployed to GitHub Pages from the `gh-pages` branch. Run `npm
 
 ## Images and fonts
 
-The catalog has 52 concept images and 68 separate close-up crops for variations, so each seeded listing uses a distinct local file. These mostly depict scenes or food from the referenced films, series, manga, and games. The Beef Wellington image comes from Gordon Ramsay's official Hell's Kitchen site; Chaliapin Steak Don uses a real-life recreation because the available anime still did not show the dish clearly. Gojo's Kikufuku uses a product photograph of the actual sweet because the available anime frame shows it too small to recognize. These images are third-party copyrighted material; their use is not licensed for commercial publication. Known image sources and the attribution limits are documented in [IMAGE_CREDITS.md](IMAGE_CREDITS.md). The older 16 Unsplash photos remain available for archived reservations and for newly created bags. DM Sans and Newsreader are served locally with their OFL licenses in `public/fonts/`. The images do not represent real marketplace offers or official franchise partnerships. Image URLs include a version suffix so returning visitors receive updated assets.
+The catalog has 52 concept images and 68 separate close-up crops for variations, so each seeded listing uses a distinct local file. These mostly depict scenes or food from the referenced films, series, manga, and games. The Beef Wellington image comes from Gordon Ramsay's official Hell's Kitchen site; Chaliapin Steak Don uses a real-life recreation because the available anime still did not show the dish clearly. Gojo's Kikufuku uses a product photograph of the actual sweet because the available anime frame shows it too small to recognize. These images are third-party copyrighted material; their use is not licensed for commercial publication. Known image sources and the attribution limits are documented in [IMAGE_CREDITS.md](IMAGE_CREDITS.md). The older 16 Unsplash photos remain available for archived reservations and for newly created bags. Instrument Sans and Fraunces are served locally with their OFL licenses in `public/fonts/`. The images do not represent real marketplace offers or official franchise partnerships. Image URLs include a version suffix so returning visitors receive updated assets.
 
 ## Limits
 

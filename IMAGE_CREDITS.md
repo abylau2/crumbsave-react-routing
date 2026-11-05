@@ -21,7 +21,7 @@ The following 16 older Unsplash photographs remain in the project for archived r
 | fruit.jpg | https://unsplash.com/photos/market-stall-with-fresh-tropical-fruit-2zJhA9RSkys |
 | dinner.jpg | https://unsplash.com/photos/a-plate-of-pasta-on-a-table-in-a-restaurant-2F0xZ_1Fxys |
 
-The logo mark in the app is an original SVG drawn for this project. DM Sans and Newsreader are served from local font files under the SIL Open Font License.
+The logo mark in the app is an original SVG drawn for this project. Instrument Sans and Fraunces are served from local font files under the SIL Open Font License.
 
 ## Fan-food catalog images
 
@@ -59,3 +59,7 @@ These later replacements make the dish visible in the catalog card. The linked p
 | `kikis-bread.webp` | [Kiki's Delivery Service bakery frame](https://note.com/animeteniwoha/n/n4ec1f12e2305) |
 | `butterbeer.webp` | [Harry Potter film frame showing the drink](https://www.moviepilot.de/news/wie-harry-potter-fans-butterbier-bestellen-konnen-160393) |
 | `gojos-kikufuku.webp` | [Sendai Airport product photograph of Kikufuku](https://www.sendai-airport.co.jp/recommend/omiyagerecommend.html) |
+
+## Current typography
+
+Instrument Sans (UI) and Fraunces (headlines, roman and italic) are self-hosted from Google Fonts. Source URLs are recorded in `public/fonts/font-sources.json`; SIL Open Font License texts are included in `public/fonts/InstrumentSans-OFL.txt` and `public/fonts/Fraunces-OFL.txt`. Older font files remain available for cached prior builds.

@@ -5,9 +5,9 @@ import { imageSrc } from '../utils/imageSrc.js';
 export function Hero() {
   return <section className="hero container" aria-labelledby="hero-title">
     <div className="hero-copy">
-      <p className="eyebrow">ALMATY · SURPLUS FOOD MARKETPLACE</p>
-      <h1 id="hero-title">Good food,<br /><em>another chance.</em></h1>
-      <p className="hero-lead">Discover surprise bags from local cafes, bakeries, and food spots. Save on something delicious while giving good food a second chance.</p>
+      <p className="eyebrow">ALMATY · GOOD FOOD FOR LESS</p>
+      <h1 id="hero-title">Good food.<br />Lower prices.<br /><em>Less waste.</em></h1>
+      <p className="hero-lead">Local cafés, bakeries and restaurants don't always sell everything they make. Find their leftover food for less.</p>
       <div className="hero-actions"><Link className="button button-primary button-large" to="/bags">Explore surprise bags <ArrowUpRight size={18} /></Link><Link className="text-link" to="/#how-it-works">How it works <ArrowDownRight size={18} /></Link></div>
     </div>
     <div className="hero-visual">

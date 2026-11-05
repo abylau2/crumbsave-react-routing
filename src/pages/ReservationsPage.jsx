@@ -14,7 +14,7 @@ export function ReservationsPage() {
       .catch((error) => { if (error.name !== 'AbortError') setRequest({ status: 'error', items: [], error: error.message }); });
     return () => controller.abort();
   }, [revision]);
-  return <div className="container reservations-page"><div className="page-intro"><p className="eyebrow">YOUR GOOD FINDS</p><h1>My <em>reservations.</em></h1><p>The bags you've saved in this browser. No payment or pickup booking is involved.</p></div>
+  return <div className="container reservations-page"><div className="page-intro"><p className="eyebrow">YOUR GOOD FINDS</p><h1>My <em>reservations.</em></h1><p>Your saved bags, with prices and pickup details in one place.</p></div>
     {request.status === 'loading' && <div className="reservation-loading" role="status"><div className="shimmer skeleton-line title" /><div className="shimmer skeleton-line" /><span className="sr-only">Loading reservations…</span></div>}
     {request.status === 'error' && <ErrorState message={request.error} onRetry={() => setRevision((value) => value + 1)} />}
     {request.status === 'success' && (request.items.length ? <div className="reservations-list">{request.items.map((item) => <ReservationCard key={item.id} reservation={item} />)}</div> : <EmptyState kind="reservations" />)}

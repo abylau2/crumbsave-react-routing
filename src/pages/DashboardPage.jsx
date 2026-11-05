@@ -28,7 +28,7 @@ export default function DashboardPage() {
     ['Average bag price', formatKzt(Math.round(stats.averagePrice))],
     ['Available bag units', stats.units]
   ];
-  return <div className="container dashboard-page"><div className="page-intro"><p className="eyebrow">THE CATALOG, AT A GLANCE</p><h1>Good finds,<br /><em>in numbers.</em></h1><p>A live summary of this browser's demo catalog. These are listings and available units, not real sales or revenue.</p></div>
+  return <div className="container dashboard-page"><div className="page-intro"><p className="eyebrow">THE CATALOG, AT A GLANCE</p><h1>Your catalog,<br /><em>at a glance.</em></h1><p>See what’s available, compare categories and explore listings by district.</p></div>
     {status === 'loading' && <LoadingSkeleton count={3} />}
     {status === 'error' && <ErrorState message={error} onRetry={retry} />}
     {status === 'success' && <>
