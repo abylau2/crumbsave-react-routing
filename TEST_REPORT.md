@@ -10,7 +10,7 @@ Before implementation, the working tree was clean on main. `npm test` passed all
 
 | Command | Result |
 |---|---|
-| `npm test` | Passed: 20 tests, 0 failures |
+| `npm test` | Passed: 21 tests, 0 failures |
 | `npm run build` | Passed |
 | `npm run build:pages` | Passed; 404 fallback and .nojekyll created |
 | `npm run preview -- --port 4173` | Started the local production preview |
@@ -46,12 +46,16 @@ The existing forest/ivory palette, DM Sans, Newsreader, spacing and image librar
 
 ## Public deployment
 
-Verified on GitHub Pages after build `f7fd83c` completed successfully. Source implementation: `c42144d`.
+The original routing implementation was verified before the rename, after Pages build `f7fd83c` completed successfully. Source implementation: `c42144d`. The renamed deployment is checked separately below.
 
 Public browser checks passed for Home, About, `/bags?category=Bakery&sort=price-asc&page=2`, `/bags/fan-001`, Dashboard, Login, and the Home How It Works hash. Each address was opened directly and refreshed. The catalog retained its Bakery filter and eight page-2 records. Dashboard displayed six KPIs. No JavaScript page errors were observed.
 
-Repository: https://github.com/abylau2/crumbsave-react-midterm
+Repository: https://github.com/abylau2/crumbsave-react-routing
 
-Application: https://abylau2.github.io/crumbsave-react-midterm/
+Application: https://abylau2.github.io/crumbsave-react-routing/
 
 Implementation branch: `feat/routing-homework`. It was pushed and fast-forwarded to remote main without force. The production build was committed normally to gh-pages. No user data or image files were removed.
+
+## Rename verification
+
+The repository was renamed in place. GitHub repository ID remains `1428464444`. Vite Pages base, Router basename (derived from Vite), SPA fallback, package metadata, test URLs, documentation and local Git remote use the new name. A legacy-path image test covers saved listings and reservations without rewriting storage. All tests and both builds are rerun for the rename.

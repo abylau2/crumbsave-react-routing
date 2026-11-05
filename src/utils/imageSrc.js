@@ -1,4 +1,5 @@
-// A versioned URL refreshes locally stored images after an asset update.
 export function imageSrc(path) {
-  return `${path}${path.includes('?') ? '&' : '?'}v=8`;
+  const base = typeof import.meta.env === 'object' ? import.meta.env.BASE_URL : '/';
+  const currentPath = path.replace(/^\/crumbsave-react-(?:midterm|routing)\//, base);
+  return `${currentPath}${currentPath.includes('?') ? '&' : '?'}v=8`;
 }

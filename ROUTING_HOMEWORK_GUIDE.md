@@ -60,7 +60,7 @@ Login is a form preview. It checks email format and a minimum password length. V
 
 ## GitHub Pages
 
-The Pages build uses `/crumbsave-react-midterm/` as its base. `BrowserRouter` uses that basename. `scripts/write-pages-fallback.mjs` writes `404.html`. A direct nested URL first receives a 404 response. That page redirects to the app with the original path, query and hash inside an encoded `__route` parameter. Before mounting React, main restores the original URL. The application then renders the requested route.
+The Pages build uses `/crumbsave-react-routing/` as its base. `BrowserRouter` uses that basename. `scripts/write-pages-fallback.mjs` writes `404.html`. A direct nested URL first receives a 404 response. That page redirects to the app with the original path, query and hash inside an encoded `__route` parameter. Before mounting React, main restores the original URL. The application then renders the requested route.
 
 ## Small changes to explain during defense
 

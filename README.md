@@ -1,7 +1,7 @@
 # CrumbSave
 
-**Public demo:** https://abylau2.github.io/crumbsave-react-midterm/  
-**Source repository:** https://github.com/abylau2/crumbsave-react-midterm
+**Public demo:** https://abylau2.github.io/crumbsave-react-routing/
+**Source repository:** https://github.com/abylau2/crumbsave-react-routing
 
 **Good food, another chance.** CrumbSave is an independently built React university project: a fictional surplus-food Surprise Bag marketplace for Almaty. Visitors can browse demo offers, create a demo listing, and save a demo reservation. No real shops, payments, or pickup bookings are involved.
 
@@ -117,3 +117,7 @@ python3 tests/routing_browser.py
 ```
 
 The routing test also starts a temporary server on port 4175. It serves the Pages build with actual 404 responses to test deep-link restoration. Browser tests use fresh browser contexts and do not reset your normal browser data.
+
+## Repository rename
+
+The repository is now `abylau2/crumbsave-react-routing`. This is the same repository with its existing history and branches. The Pages build script supplies the new Vite base; React Router reads that base automatically. The image helper resolves older saved image URLs under the current base without resetting listings, inventory or reservations. The localStorage key is unchanged.

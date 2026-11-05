@@ -70,3 +70,12 @@ test('GitHub Pages fallback encodes query and hash as part of the route', () => 
   const script=readFileSync(new URL('../scripts/write-pages-fallback.mjs',import.meta.url),'utf8');
   assert.ok(script.includes('encodeURIComponent(path + location.search + location.hash)'));
 });
+
+test('saved image paths from before the rename work without rewriting stored data', async () => {
+  const { imageSrc } = await import('../src/utils/imageSrc.js');
+  const path = '/crumbsave-react-midterm/images/fan-food/ichiraku-ramen.webp';
+  assert.equal(imageSrc(path), '/images/fan-food/ichiraku-ramen.webp?v=8');
+  assert.equal(imageSrc('/crumbsave-react-routing/images/fan-food/ichiraku-ramen.webp'), '/images/fan-food/ichiraku-ramen.webp?v=8');
+  assert.equal(imageSrc('/images/example.webp?crop=1'), '/images/example.webp?crop=1&v=8');
+  assert.equal(path, '/crumbsave-react-midterm/images/fan-food/ichiraku-ramen.webp');
+});

@@ -1,6 +1,6 @@
 import { writeFileSync } from 'node:fs';
 
-const base = '/crumbsave-react-midterm/';
+const base = '/crumbsave-react-routing/';
 const fallback = `<!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Opening CrumbSave…</title></head>
 <body><script>
